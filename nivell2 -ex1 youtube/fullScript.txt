@@ -1,0 +1,13 @@
+
+db.createCollection( 'Users', {validator: {$jsonSchema: {bsonType: 'object',title:'Users',properties: {name: {bsonType: 'string'},email: {bsonType: 'string'},password: {bsonType: 'string'},country: {bsonType: 'string'},gender: {bsonType: 'string'},birth_date: {bsonType: 'date'},zip_code: {bsonType: 'int'},channels: {bsonType: 'array',items: {
+title:'object',properties: {name: {bsonType: 'string'},desc: {bsonType: 'string'},creation_date: {bsonType: 'date'}}}},playlists: {bsonType: 'array',items: {
+title:'object',properties: {name: {bsonType: 'string'},isPublic: {bsonType: 'bool'},creation_date: {bsonType: 'date'}}}},subs_channels: {bsonType: 'array',items: {bsonType: 'objectId'}}}         }      }});  
+
+db.createCollection( 'Videos', {validator: {$jsonSchema: {bsonType: 'object',title:'Videos',required: [         'User',          'Comments'],properties: {User: {bsonType: 'objectId'},title: {bsonType: 'string'},desc: {bsonType: 'string'},size: {bsonType: 'int'},name_vid: {bsonType: 'string'},lenght_vid: {bsonType: 'decimal'},thumbnail: {bsonType: 'string'},state: {enum: },upload_time: {bsonType: 'timestamp'},play_num: {bsonType: 'int'},total_likes: {bsonType: 'int'},likes_list: {bsonType: 'array',items: {
+title:'object',properties: {user_id: {bsonType: 'objectId'},timeStamp: {bsonType: 'timestamp'}}}},total_dislikes: {bsonType: 'int'},dislike_list: {bsonType: 'array',items: {
+title:'object',properties: {user_id: {bsonType: 'objectId'},timeStamp: {bsonType: 'timestamp'}}}},tags: {bsonType: 'array',items: {
+title:'object',properties: {name: {bsonType: 'string'}}}},Comments: {bsonType: 'array',items: {bsonType: 'objectId'}}}         }      }});  
+
+db.createCollection( 'Comments', {validator: {$jsonSchema: {bsonType: 'object',title:'Comments',properties: {user_id: {bsonType: 'objectId'},text: {bsonType: 'string'},timeStamp: {bsonType: 'timestamp'},likes_list: {bsonType: 'array',items: {
+title:'object',properties: {user_id: {bsonType: 'objectId'},timeStamp: {bsonType: 'timestamp'}}}},dislikes_list: {bsonType: 'array',items: {
+title:'object',properties: {user_id: {bsonType: 'objectId'},timeStamp: {bsonType: 'timestamp'}}}}}         }      }});  

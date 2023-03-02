@@ -1,0 +1,9 @@
+
+db.createCollection( 'Clients', {validator: {$jsonSchema: {bsonType: 'object',title:'Clients',properties: {name: {bsonType: 'string'},last_name: {bsonType: 'string'},address: {bsonType: 'array',items: {
+title:'object',properties: {street: {bsonType: 'string'},zip_code: {bsonType: 'int'},city: {bsonType: 'string'},province: {bsonType: 'string'}}}},phone: {bsonType: 'int'}}         }      }});  
+db.createCollection( 'Orders', {validator: {$jsonSchema: {bsonType: 'object',title:'Orders',required: [         'client_id'],properties: {client_id: {bsonType: 'int'},timestamp: {bsonType: 'timestamp'},delivery: {bsonType: 'bool'},total_price: {bsonType: 'int'},products: {bsonType: 'array',items: {
+title:'object',properties: {name: {bsonType: 'string'},desc: {bsonType: 'string'},image: {bsonType: 'string'},price: {bsonType: 'int'},type: {enum: pizza, drink,burguer},pizza_category: {enum: classic, premuim}}}},delivery_details: {bsonType: 'object',
+title:'object',properties: {timestamp_delivery: {bsonType: 'timestamp'},worker_id: {bsonType: 'int'}}}}         }      }});  
+db.createCollection( 'Shops', {validator: {$jsonSchema: {bsonType: 'object',title:'Shops',required: [         'Orders'],properties: {address: {bsonType: 'object',
+title:'object',properties: {street: {bsonType: 'string'},city: {bsonType: 'string'},province: {bsonType: 'string'},zip_code: {bsonType: 'int'}}},workers: {bsonType: 'array',items: {
+title:'object',properties: {name: {bsonType: 'string'},last_name: {bsonType: 'string'},nif: {bsonType: 'int'},phone: {bsonType: 'int'},type_worker: {enum: cook, delivery}}}},Orders: {bsonType: 'array',items: {bsonType: 'objectId'}}}         }      }});  

@@ -1,0 +1,12 @@
+
+db.createCollection( 'Users', {validator: {$jsonSchema: {bsonType: 'object',title:'Users',required: [         'Playlists',          'Artists'],properties: {name: {bsonType: 'string'},email: {bsonType: 'string'},password: {bsonType: 'string'},gender: {bsonType: 'string'},country: {bsonType: 'string'},zip_code: {bsonType: 'int'},birth_date: {bsonType: 'date'},isPremuim: {bsonType: 'object',
+title:'object',properties: {start_date: {bsonType: 'timestamp'},end_date: {bsonType: 'timestamp'},payment_details: {bsonType: 'object',
+title:'object',properties: {method: {enum: },card_num: {bsonType: 'int'},expire_date: {bsonType: 'int'},cvv: {bsonType: 'int'},paypal_id: {bsonType: 'string'}}},payments: {bsonType: 'array',items: {
+title:'object',properties: {timeStamp: {bsonType: 'timestamp'},total_payment: {bsonType: 'int'}}}}}},Playlists: {bsonType: 'array',items: {bsonType: 'objectId'}},Artists: {bsonType: 'array',items: {bsonType: 'objectId'}},fav_albums: {bsonType: 'array',items: {bsonType: 'objectId'}},fav_songs: {bsonType: 'array',items: {bsonType: 'objectId'}}}         }      }});  
+
+db.createCollection( 'Playlists', {validator: {$jsonSchema: {bsonType: 'object',title:'Playlists',properties: {title: {bsonType: 'string'},song_num: {bsonType: 'int'},timeStamp: {bsonType: 'timestamp'},isActive: {bsonType: 'bool'},delete_date: {bsonType: 'date'},isShared: {bsonType: 'bool'},songs: {bsonType: 'array',items: {
+title:'object',properties: {user_id_insert: {bsonType: 'objectId'},timeStamp: {bsonType: 'timestamp'}}}}}         }      }});  
+
+db.createCollection( 'Artists', {validator: {$jsonSchema: {bsonType: 'object',title:'Artists',properties: {name: {bsonType: 'string'},image: {bsonType: 'string'},abums: {bsonType: 'array',items: {
+title:'object',properties: {title: {bsonType: 'string'},cover_url: {bsonType: 'string'},date_realase: {bsonType: 'date'},songs: {bsonType: 'array',items: {
+title:'object',properties: {title: {bsonType: 'string'},lenght: {bsonType: 'int'},reproductions: {bsonType: 'int'}}}}}}},genre: {bsonType: 'array',items: {bsonType: 'string'}}}         }      }});  
